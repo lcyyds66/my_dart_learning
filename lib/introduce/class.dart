@@ -26,6 +26,7 @@ class Spacecraft {
     }
   }
 }
+
 class Orbiter extends Spacecraft {
   double altitude;
 
@@ -40,6 +41,14 @@ mixin Piloted {
   }
 }
 
+class PilotedCraft extends Spacecraft with Piloted {
+  PilotedCraft(super.name, super.launchDate);
+  // ···
+}
+
+abstract class MockSpaceship implements Spacecraft {
+  // ···
+}
 
 abstract class Describable {
   void describe();
@@ -50,10 +59,13 @@ abstract class Describable {
     print('=========');
   }
 }
-void main(){
-  var voyager = Spacecraft('Voyager I', DateTime(1977, 9, 5));
-voyager.describe();
 
-var voyager3 = Spacecraft.unlaunched('Voyager III');
-voyager3.describe();
+
+void main() {
+  var voyager = Spacecraft('Voyager I', DateTime(1977, 9, 5));
+  voyager.describe();
+
+  var voyager3 = Spacecraft.unlaunched('Voyager III');
+  voyager3.describe();
+
 }
